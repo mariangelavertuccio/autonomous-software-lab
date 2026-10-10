@@ -1,29 +1,25 @@
-from time import perf_counter
-from collections.abc import Callable
-from typing import Any
+import pytest
+
+from src.performance_analyzer import measure_execution
 
 
-def measure_execution(
-    function: Callable[..., Any],
-    *args: Any,
-    repetitions: int = 5,
-    **kwargs: Any,
-) -> dict[str, float]:
-    """Measure repeated executions of a function."""
+def test_measure_execution_returns_valid_metrics():
+    def add_numbers(a, b):
+        return a + b
 
-    if repetitions < 1:
-        raise ValueError("repetitions must be at least 1")
+    result = measure_execution(
+        add_numbers,
+        2,
+        3,
+        repetitions=3,
+    )
 
-    durations = []
+    assert result["minimum_seconds"] >= 0
+    assert result["maximum_seconds"] >= result["minimum_seconds"]
+    assert result["minimum_seconds"] <= result["average_seconds"]
+    assert result["average_seconds"] <= result["maximum_seconds"]
 
-    for _ in range(repetitions):
-        start = perf_counter()
-        function(*args, **kwargs)
-        elapsed = perf_counter() - start
-        durations.append(elapsed)
 
-    return {
-        "minimum_seconds": min(durations),
-        "maximum_seconds": max(durations),
-        "average_seconds": sum(durations) / len(durations),
-    }
+def test_measure_execution_rejects_invalid_repetitions():
+    with pytest.raises(ValueError):
+        measure_execution(lambda: None, repetitions=0)
