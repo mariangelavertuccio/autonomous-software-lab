@@ -75,7 +75,9 @@ GitHub Actions also runs the tests automatically when changes are pushed or a pu
 
 ## Example
 
-The performance analyzer can measure the execution time of a function:
+### 1. Measure Function Execution Time
+
+The performance analyzer measures how long a function takes to execute and returns the minimum, maximum, and average execution time.
 
 ```python
 from src.performance_analyzer import measure_execution
@@ -90,9 +92,9 @@ metrics = measure_execution(example_function, repetitions=5)
 print(metrics)
 ```
 
-The result contains the minimum, maximum, and average execution time in seconds.
+### 2. Compare Two Functions
 
-Functions can also be compared:
+The analyzer can compare the execution times of two functions and calculate the relative performance improvement.
 
 ```python
 from src.performance_analyzer import (
@@ -118,7 +120,7 @@ comparison = compare_functions(
 print(format_comparison_report(comparison))
 ```
 
-The comparison report includes execution-time metrics and the relative improvement percentage of the faster function.
+The comparison report includes the minimum, maximum, and average execution times of both functions, identifies the faster function, and displays the relative improvement percentage.
 
 ## Current Status
 
