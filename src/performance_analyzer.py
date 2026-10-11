@@ -61,17 +61,28 @@ def compare_functions(
         **kwargs,
     )
 
-    if first_result["average_seconds"] < second_result["average_seconds"]:
+    first_average = first_result["average_seconds"]
+    second_average = second_result["average_seconds"]
+
+    if first_average < second_average:
         faster_function = "first_function"
-    elif second_result["average_seconds"] < first_result["average_seconds"]:
+        improvement_percentage = (
+            (second_average - first_average) / second_average
+        ) * 100
+    elif second_average < first_average:
         faster_function = "second_function"
+        improvement_percentage = (
+            (first_average - second_average) / first_average
+        ) * 100
     else:
         faster_function = "tie"
+        improvement_percentage = 0.0
 
     return {
         "first_function": first_result,
         "second_function": second_result,
         "faster_function": faster_function,
+        "improvement_percentage": improvement_percentage,
     }
 
 def format_comparison_report(comparison: dict[str, Any]) -> str:
