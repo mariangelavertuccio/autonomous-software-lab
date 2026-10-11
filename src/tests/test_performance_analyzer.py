@@ -66,7 +66,6 @@ def test_compare_functions_returns_valid_results():
         "tie",
     )
 
-
 def test_format_comparison_report_returns_readable_text():
     comparison = {
         "first_function": {
@@ -80,6 +79,7 @@ def test_format_comparison_report_returns_readable_text():
             "average_seconds": 0.003,
         },
         "faster_function": "first_function",
+        "improvement_percentage": 33.33,
     }
 
     report = format_comparison_report(comparison)
@@ -89,3 +89,5 @@ def test_format_comparison_report_returns_readable_text():
     assert "Second function:" in report
     assert "Conclusion:" in report
     assert "first_function" in report
+    assert "Improvement: 33.33%" in report
+
