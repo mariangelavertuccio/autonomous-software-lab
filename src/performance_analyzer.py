@@ -37,3 +37,39 @@ def format_report(metrics: dict[str, float]) -> str:
         f"Maximum: {metrics['maximum_seconds']:.6f} seconds\n"
         f"Average: {metrics['average_seconds']:.6f} seconds"
     )
+
+def compare_functions(
+    first_function: Callable[..., Any],
+    second_function: Callable[..., Any],
+    *args: Any,
+    repetitions: int = 5,
+    **kwargs: Any,
+) -> dict[str, Any]:
+    """Compare the execution times of two functions."""
+
+    first_result = measure_execution(
+        first_function,
+        *args,
+        repetitions=repetitions,
+        **kwargs,
+    )
+
+    second_result = measure_execution(
+        second_function,
+        *args,
+        repetitions=repetitions,
+        **kwargs,
+    )
+
+    if first_result["average_seconds"] < second_result["average_seconds"]:
+        faster_function = "first_function"
+    elif second_result["average_seconds"] < first_result["average_seconds"]:
+        faster_function = "second_function"
+    else:
+        faster_function = "tie"
+
+    return {
+        "first_function": first_result,
+        "second_function": second_result,
+        "faster_function": faster_function,
+    }
