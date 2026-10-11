@@ -75,15 +75,30 @@ def compare_functions(
     }
 
 def format_comparison_report(comparison: dict[str, Any]) -> str:
-    """Format function comparison results as a readable report."""
+    """Format a readable report comparing two functions."""
 
     first = comparison["first_function"]
     second = comparison["second_function"]
     faster = comparison["faster_function"]
 
+    if faster == "tie":
+        conclusion = "Both functions have the same average execution time."
+    else:
+        conclusion = f"The faster function is: {faster}"
+
     return (
         "Function Comparison Report\n"
-        f"First function average: {first['average_seconds']:.6f} seconds\n"
-        f"Second function average: {second['average_seconds']:.6f} seconds\n"
-        f"Faster function: {faster}"
+        "==========================\n"
+        "\n"
+        "First function:\n"
+        f"  Minimum: {first['minimum_seconds']:.6f} seconds\n"
+        f"  Maximum: {first['maximum_seconds']:.6f} seconds\n"
+        f"  Average: {first['average_seconds']:.6f} seconds\n"
+        "\n"
+        "Second function:\n"
+        f"  Minimum: {second['minimum_seconds']:.6f} seconds\n"
+        f"  Maximum: {second['maximum_seconds']:.6f} seconds\n"
+        f"  Average: {second['average_seconds']:.6f} seconds\n"
+        "\n"
+        f"Conclusion: {conclusion}"
     )
