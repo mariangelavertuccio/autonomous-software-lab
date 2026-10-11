@@ -44,6 +44,7 @@ def test_format_report_contains_execution_metrics():
     assert "Maximum: 0.500000 seconds" in report
     assert "Average: 0.300000 seconds" in report
 
+
 def test_compare_functions_returns_valid_results():
     def first_function():
         return sum(range(100))
@@ -64,7 +65,9 @@ def test_compare_functions_returns_valid_results():
         "second_function",
         "tie",
     )
-    def test_format_comparison_report_returns_readable_text():
+
+
+def test_format_comparison_report_returns_readable_text():
     comparison = {
         "first_function": {
             "minimum_seconds": 0.001,
