@@ -57,8 +57,6 @@ git clone https://github.com/mariangelavertuccio/autonomous-software-lab.git
 cd autonomous-software-lab
 ```
 
-Replace `YOUR_REPOSITORY_URL` with the actual clone URL of your repository before running the command.
-
 Install the dependencies:
 
 ```bash
