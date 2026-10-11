@@ -53,7 +53,7 @@ autonomous-software-lab/
 Clone the repository and enter the project directory:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/mariangelavertuccio/autonomous-software-lab.git
 cd autonomous-software-lab
 ```
 
