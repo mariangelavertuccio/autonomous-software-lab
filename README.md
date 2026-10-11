@@ -48,7 +48,7 @@ autonomous-software-lab/
 - Python 3.12 or compatible version
 - pip
 
-### Install Dependencies
+## Install Dependencies
 
 Clone the repository and enter the project directory:
 
