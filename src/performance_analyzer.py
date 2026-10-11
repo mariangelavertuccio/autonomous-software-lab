@@ -73,3 +73,17 @@ def compare_functions(
         "second_function": second_result,
         "faster_function": faster_function,
     }
+
+def format_comparison_report(comparison: dict[str, Any]) -> str:
+    """Format function comparison results as a readable report."""
+
+    first = comparison["first_function"]
+    second = comparison["second_function"]
+    faster = comparison["faster_function"]
+
+    return (
+        "Function Comparison Report\n"
+        f"First function average: {first['average_seconds']:.6f} seconds\n"
+        f"Second function average: {second['average_seconds']:.6f} seconds\n"
+        f"Faster function: {faster}"
+    )
