@@ -28,9 +28,9 @@ measure_execution(lambda: None, repetitions=0)
 
 def test_format_report_contains_execution_metrics():
 metrics = {
-“minimum_seconds”: 0.1,
-“maximum_seconds”: 0.5,
-“average_seconds”: 0.3,
+"minimum_seconds": 0.1,
+"maximum_seconds": 0.5,
+"average_seconds": 0.3,
 }
 
 report = format_report(metrics)
@@ -60,17 +60,17 @@ assert result["faster_function"] in (
 
 def test_format_comparison_report_contains_results():
 results = {
-“first_function”: {
-“minimum_seconds”: 0.1,
-“maximum_seconds”: 0.3,
-“average_seconds”: 0.2,
+"first_function": {
+"minimum_seconds": 0.1,
+"maximum_seconds": 0.3,
+"average_seconds": 0.2,
 },
-“second_function”: {
-“minimum_seconds”: 0.2,
-“maximum_seconds”: 0.4,
-“average_seconds”: 0.3,
+"second_function": {
+"minimum_seconds": 0.2,
+"maximum_seconds": 0.4,
+"average_seconds": 0.3,
 },
-“faster_function”: “first_function”,
+"faster_function": "first_function",
 }
 
 report = format_comparison_report(results)
