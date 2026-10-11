@@ -1,53 +1,135 @@
-# autonomous-software-lab
-Python-based software testing, performance analysis and continuous improvement lab.
-Autonomous Software Lab
+# Autonomous Software Lab
 
-A personal Python project focused on software testing, performance analysis, and continuous improvement.
+A Python-based project for automated testing, performance measurement, and software quality analysis.
 
-Overview
+## Overview
 
-Autonomous Software Lab is a personal engineering project designed to explore software quality, automated testing, and performance optimization using Python.
+Autonomous Software Lab is a personal software engineering project focused on software testing, performance analysis, and continuous improvement.
 
-The goal is to develop a toolset that helps analyze program behavior, measure performance, identify potential regressions, and compare alternative implementations using reproducible tests and measurable results.
+The project provides tools to measure function execution times, compare alternative implementations, and generate readable performance reports.
 
-Project Goals
+It also uses automated tests and continuous integration to help verify code correctness as the project evolves.
 
-* Automate software tests and record their results.
-* Measure execution time and memory usage.
-* Explore static code analysis and software quality tools.
-* Compare different versions of a program.
-* Document findings and evaluate potential improvements.
+## Features
 
-Planned Technologies
+- **Execution time measurement:** Measure the minimum, maximum, and average execution time of a function.
+- **Function comparison:** Compare the execution times of two functions.
+- **Performance improvement analysis:** Calculate the relative execution-time improvement of the faster function.
+- **Readable reports:** Generate text reports containing performance metrics and comparison results.
+- **Automated testing:** Use pytest to verify expected behavior.
+- **Continuous integration:** Run automated tests through GitHub Actions.
 
-* Python
-* pytest
-* Git and GitHub
-* cProfile and timeit
-* tracemalloc
-* Ruff
+## Technologies
 
-Additional components may be introduced as the project evolves.
+- Python
+- pytest
+- Git and GitHub
+- GitHub Actions
 
-Development Roadmap
+## Project Structure
 
-* Set up the Python project structure.
-* Implement an initial automated testing workflow.
-* Add performance measurement tools.
-* Generate structured analysis reports.
-* Compare results across program versions.
-* Add automated checks through continuous integration.
+```text
+autonomous-software-lab/
+├── src/
+│   ├── performance_analyzer.py
+│   └── tests/
+│       └── test_performance_analyzer.py
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+├── requirements.txt
+└── README.md
+```
 
-Engineering Philosophy
+## Getting Started
 
-The project follows a simple principle:
+### Requirements
 
-Measure, verify, understand, improve.
+- Python 3.12 or compatible version
+- pip
 
-The aim is to develop a structured approach to software engineering based on experimentation, reproducibility, and continuous learning.
+### Install Dependencies
 
-Project Status
+Clone the repository and enter the project directory:
 
-Early development — features are being implemented progressively.
+```bash
+git clone YOUR_REPOSITORY_URL
+cd autonomous-software-lab
+```
 
-This repository documents the project’s development, technical decisions, and future improvements.
+Replace `YOUR_REPOSITORY_URL` with the actual clone URL of your repository before running the command.
+
+Install the dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## Running the Tests
+
+Run the automated test suite with:
+
+```bash
+python -m pytest
+```
+
+GitHub Actions also runs the tests automatically when changes are pushed or a pull request is opened.
+
+## Example
+
+The performance analyzer can measure the execution time of a function:
+
+```python
+from src.performance_analyzer import measure_execution
+
+
+def example_function():
+    return sum(range(1000))
+
+
+metrics = measure_execution(example_function, repetitions=5)
+
+print(metrics)
+```
+
+The result contains the minimum, maximum, and average execution time in seconds.
+
+Functions can also be compared:
+
+```python
+from src.performance_analyzer import (
+    compare_functions,
+    format_comparison_report,
+)
+
+
+def first_function():
+    return sum(range(1000))
+
+
+def second_function():
+    return sum(range(2000))
+
+
+comparison = compare_functions(
+    first_function,
+    second_function,
+    repetitions=5,
+)
+
+print(format_comparison_report(comparison))
+```
+
+The comparison report includes execution-time metrics and the relative improvement percentage of the faster function.
+
+## Current Status
+
+The project includes execution-time measurement, function comparison, performance reporting, automated tests, and a GitHub Actions workflow.
+
+Additional capabilities, such as memory profiling, static code analysis, and performance regression detection, may be explored in future iterations.
+
+## Engineering Philosophy
+
+**Measure. Verify. Understand. Improve.**
+
+The goal is to develop a practical understanding of software quality, reproducible testing, and performance analysis through iterative development.
