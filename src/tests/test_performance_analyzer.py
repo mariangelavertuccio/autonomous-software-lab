@@ -1,6 +1,10 @@
 import pytest
 
-from src.performance_analyzer import format_report, measure_execution
+from src.performance_analyzer import (
+    compare_functions,
+    format_report,
+    measure_execution,
+)
 
 
 def test_measure_execution_returns_valid_metrics():
@@ -38,3 +42,24 @@ def test_format_report_contains_execution_metrics():
     assert "Minimum: 0.100000 seconds" in report
     assert "Maximum: 0.500000 seconds" in report
     assert "Average: 0.300000 seconds" in report
+
+def test_compare_functions_returns_valid_results():
+    def first_function():
+        return sum(range(100))
+
+    def second_function():
+        return sum(range(200))
+
+    result = compare_functions(
+        first_function,
+        second_function,
+        repetitions=3,
+    )
+
+    assert "first_function" in result
+    assert "second_function" in result
+    assert result["faster_function"] in (
+        "first_function",
+        "second_function",
+        "tie",
+    )
