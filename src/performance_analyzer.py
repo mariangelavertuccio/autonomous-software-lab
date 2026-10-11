@@ -27,3 +27,13 @@ def measure_execution(
         "maximum_seconds": max(durations),
         "average_seconds": sum(durations) / len(durations),
     }
+
+def format_report(metrics: dict[str, float]) -> str:
+    """Format execution metrics as a readable report."""
+
+    return (
+        "Performance Report\n"
+        f"Minimum: {metrics['minimum_seconds']:.6f} seconds\n"
+        f"Maximum: {metrics['maximum_seconds']:.6f} seconds\n"
+        f"Average: {metrics['average_seconds']:.6f} seconds"
+    )
