@@ -2,6 +2,7 @@ import pytest
 
 from src.performance_analyzer import (
     compare_functions,
+    format_comparison_report,
     format_report,
     measure_execution,
 )
@@ -63,3 +64,25 @@ def test_compare_functions_returns_valid_results():
         "second_function",
         "tie",
     )
+    def test_format_comparison_report_returns_readable_text():
+    comparison = {
+        "first_function": {
+            "minimum_seconds": 0.001,
+            "maximum_seconds": 0.003,
+            "average_seconds": 0.002,
+        },
+        "second_function": {
+            "minimum_seconds": 0.002,
+            "maximum_seconds": 0.004,
+            "average_seconds": 0.003,
+        },
+        "faster_function": "first_function",
+    }
+
+    report = format_comparison_report(comparison)
+
+    assert "Function Comparison Report" in report
+    assert "First function:" in report
+    assert "Second function:" in report
+    assert "Conclusion:" in report
+    assert "first_function" in report
